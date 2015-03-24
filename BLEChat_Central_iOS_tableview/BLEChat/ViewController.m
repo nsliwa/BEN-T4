@@ -169,34 +169,34 @@ NSTimer *rssiTimer;
 
 // CHANGE 1.b: change this as you no longer need to search for perpipherals in this view controller
 
-- (IBAction)BLEShieldScan:(id)sender
-{
-    // disconnect from any peripherals
-    if (self.bleShield.activePeripheral)
-        if(self.bleShield.activePeripheral.isConnected)
-        {
-            [[self.bleShield CM] cancelPeripheralConnection:[self.bleShield activePeripheral]];
-            return;
-        }
-    
-    // set peripheral to nil
-    if (self.bleShield.peripherals)
-        self.bleShield.peripherals = nil;
-    
-    //start search for peripherals with a timeout of 3 seconds
-    // this is an asunchronous call and will return before search is complete
-    [self.bleShield findBLEPeripherals:3];
-    
-    // after three seconds, try to connect to first peripheral
-    [NSTimer scheduledTimerWithTimeInterval:(float)3.0
-                                     target:self
-                                   selector:@selector(connectionTimer:)
-                                   userInfo:nil
-                                    repeats:NO];
-    
-    // give connection feedback to the user
-    [self.spinner startAnimating];
-}
+//- (IBAction)BLEShieldScan:(id)sender
+//{
+//    // disconnect from any peripherals
+//    if (self.bleShield.activePeripheral)
+//        if(self.bleShield.activePeripheral.isConnected)
+//        {
+//            [[self.bleShield CM] cancelPeripheralConnection:[self.bleShield activePeripheral]];
+//            return;
+//        }
+//    
+//    // set peripheral to nil
+//    if (self.bleShield.peripherals)
+//        self.bleShield.peripherals = nil;
+//    
+//    //start search for peripherals with a timeout of 3 seconds
+//    // this is an asunchronous call and will return before search is complete
+//    [self.bleShield findBLEPeripherals:3];
+//    
+//    // after three seconds, try to connect to first peripheral
+//    [NSTimer scheduledTimerWithTimeInterval:(float)3.0
+//                                     target:self
+//                                   selector:@selector(connectionTimer:)
+//                                   userInfo:nil
+//                                    repeats:NO];
+//    
+//    // give connection feedback to the user
+//    [self.spinner startAnimating];
+//}
 //- (IBAction)BLEShieldScan:(id)sender
 //{
 //    // disconnect from any peripherals
