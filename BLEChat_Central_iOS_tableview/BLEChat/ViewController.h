@@ -21,4 +21,6 @@
 @property (weak, nonatomic) BLE *bleShield;
 @property (weak, nonatomic) IBOutlet UILabel *labelPeripheral;
 
+@property (strong, nonatomic) CBPeripheral *peripheral;
+
 @end

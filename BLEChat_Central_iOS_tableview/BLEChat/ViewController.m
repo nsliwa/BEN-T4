@@ -24,6 +24,15 @@
     return appDelegate.bleShield;
 }
 
+-( CBPeripheral* ) peripheral {
+    if(!_peripheral) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        _peripheral = [appDelegate.bleShield.peripherals objectAtIndex:0];
+    }
+    
+    return _peripheral;
+};
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

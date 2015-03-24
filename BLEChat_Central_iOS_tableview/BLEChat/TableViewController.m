@@ -7,6 +7,7 @@
 //
 
 #import "TableViewController.h"
+#import "ViewController.h"
 #import "AppDelegate.h"
 #import "BLE.h"
 
@@ -105,7 +106,26 @@
     
     //CHANGE 6: add code her to connect to the selected peripheral (aPeripheral)
     
+    //Since contentArray is an array of strings, we can use it to build a unique
+    //identifier for each segue.
     
+    //Perform a segue.
+    [self performSegueWithIdentifier:@"segueConnect"
+                              sender:[contentArray aPeripheral]];
+    
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"prepare for segue");
+    
+        UITableViewCell* cell = (UITableViewCell*)sender;
+        ViewController *vc =  [segue destinationViewController];
+        
+        vc.peripheral = sender;
+    
+        //[self.navigationController pushViewController:ivc animated:YES];
+    }
 }
 
 /*
