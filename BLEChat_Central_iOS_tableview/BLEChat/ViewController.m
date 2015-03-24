@@ -8,8 +8,12 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
+#import "BLE.h"
 
 @interface ViewController ()
+
+@property (strong, nonatomic, readonly) BLE* bleShield;
 
 @end
 
