@@ -160,17 +160,17 @@ NSTimer *rssiTimer;
 
 // CHANGE 1.c: change this as you no longer need to create the connection in this view controller
 // Called when scan period is over to connect to the first found peripheral
--(void) connectionTimer:(NSTimer *)timer
-{
-    if(bleShield.peripherals.count > 0)
-    {
-        // connect to the first found peripheral
-        [bleShield connectPeripheral:[bleShield.peripherals objectAtIndex:0]];
-    }
-    else
-    {
-        [self.spinner stopAnimating];
-    }
-}
+//-(void) connectionTimer:(NSTimer *)timer
+//{
+//    if(bleShield.peripherals.count > 0)
+//    {
+//        // connect to the first found peripheral
+//        [bleShield connectPeripheral:[bleShield.peripherals objectAtIndex:0]];
+//    }
+//    else
+//    {
+//        [self.spinner stopAnimating];
+//    }
+//}
 
 @end
