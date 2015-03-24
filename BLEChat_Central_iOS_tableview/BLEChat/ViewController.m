@@ -95,6 +95,12 @@ NSTimer *rssiTimer;
     [rssiTimer invalidate];
 }
 
+//NEW did disconnect function
+-(void) OnBLEDidDisconnect:(NSNotification *)notification
+{
+    [rssiTimer invalidate];
+}
+
 //CHANGE 7: create function called from "BLEDidConnect" notification (you can change the function below)
 // in this function, update a label on the UI to have the name of the active peripheral
 // you might be interested in the following method:
