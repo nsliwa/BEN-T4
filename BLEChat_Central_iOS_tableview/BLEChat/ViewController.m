@@ -16,6 +16,11 @@
 @implementation ViewController
 
 // CHANGE 3: Add support for lazy instantiation (like we did in the table view controller)
+-(BLE*)bleShield
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.bleShield;
+}
 
 - (void)viewDidLoad
 {
