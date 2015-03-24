@@ -126,6 +126,9 @@ NSTimer *rssiTimer;
     //CHANGE 5.a: Remove all usage of the connect button and remove from storyboard
     [self.spinner stopAnimating];
     
+    NSString *deviceName =[notification.userInfo objectForKey:@"deviceName"];
+    self.labelPeripheral.text = deviceName;
+    
     // Schedule to read RSSI every 1 sec.
     rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
 }
