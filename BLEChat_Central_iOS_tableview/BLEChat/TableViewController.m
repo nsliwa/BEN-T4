@@ -36,6 +36,8 @@
 
 }
 
+// Scan for devices for 3 seconds, then populate table with UUID and peripheral name
+// To connect, click on device name
 -(void)scanForDevices
 {
     // disconnect from any peripherals
