@@ -111,7 +111,7 @@
     
     //Perform a segue.
     [self performSegueWithIdentifier:@"segueConnect"
-                              sender:[contentArray aPeripheral]];
+                              sender:aPeripheral];
     
     
 }
@@ -125,7 +125,6 @@
         vc.peripheral = sender;
     
         //[self.navigationController pushViewController:ivc animated:YES];
-    }
 }
 
 /*

@@ -44,6 +44,8 @@
     [self.bleShield controlSetup];
     self.bleShield.delegate = self;
 
+    
+    NSLog(self.peripheral);
 
 //    bleShield = [[BLE alloc] init];
 //    [bleShield controlSetup];
