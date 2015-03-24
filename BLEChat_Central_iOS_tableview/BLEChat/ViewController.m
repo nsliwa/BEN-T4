@@ -35,10 +35,10 @@
     [self.bleShield controlSetup];
     self.bleShield.delegate = self;
 
+
 //    bleShield = [[BLE alloc] init];
 //    [bleShield controlSetup];
 //    bleShield.delegate = self;
-
     
     //CHANGE 4: add subscription to notifications from the app delegate
     //These selector functions should be created from the old BLEDelegate functions
@@ -162,6 +162,34 @@ NSTimer *rssiTimer;
     // give connection feedback to the user
     [self.spinner startAnimating];
 }
+//- (IBAction)BLEShieldScan:(id)sender
+//{
+//    // disconnect from any peripherals
+//    if (bleShield.activePeripheral)
+//        if(bleShield.activePeripheral.isConnected)
+//        {
+//            [[bleShield CM] cancelPeripheralConnection:[bleShield activePeripheral]];
+//            return;
+//        }
+//    
+//    // set peripheral to nil
+//    if (bleShield.peripherals)
+//        bleShield.peripherals = nil;
+//    
+//    //start search for peripherals with a timeout of 3 seconds
+//    // this is an asunchronous call and will return before search is complete
+//    [bleShield findBLEPeripherals:3];
+//    
+//    // after three seconds, try to connect to first peripheral
+//    [NSTimer scheduledTimerWithTimeInterval:(float)3.0
+//                                     target:self
+//                                   selector:@selector(connectionTimer:)
+//                                   userInfo:nil
+//                                    repeats:NO];
+//    
+//    // give connection feedback to the user
+//    [self.spinner startAnimating];
+//}
 
 //- (IBAction)BLEShieldScan:(id)sender
 //{
