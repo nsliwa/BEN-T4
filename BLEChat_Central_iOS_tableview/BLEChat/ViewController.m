@@ -64,7 +64,10 @@ NSTimer *rssiTimer;
 #pragma mark - BLEdelegate protocol methods
 -(void) OnBLEDidUpdateRSSI:(NSNumber *)rssi
 {
-    self.labelRSSI.text = rssi.stringValue; // when RSSI read is complete, display it
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.labelRSSI.text = rssi.stringValue;
+    });
+     // when RSSI read is complete, display it
 }
 
 // OLD FUNCITON: parse the received data using BLEDelegate protocol
@@ -72,7 +75,10 @@ NSTimer *rssiTimer;
 {
     NSData *d = [NSData dataWithBytes:data length:length];
     NSString *s = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
-    self.label.text = s;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.label.text = s;
+    });
 }
 
 // NEW FUNCTION EXAMPLE: parse the received data from NSNotification
@@ -80,7 +86,10 @@ NSTimer *rssiTimer;
 {
     NSData* d = [[notification userInfo] objectForKey:@"data"];
     NSString *s = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
-    self.label.text = s;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.label.text = s;
+    });
 }
 
 /*
@@ -124,7 +133,10 @@ NSTimer *rssiTimer;
     [self.spinner stopAnimating];
     
     NSString *deviceName =[notification.userInfo objectForKey:@"deviceName"];
-    self.labelPeripheral.text = deviceName;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.labelPeripheral.text = deviceName;
+    });
     
     // Schedule to read RSSI every 1 sec.
     rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
