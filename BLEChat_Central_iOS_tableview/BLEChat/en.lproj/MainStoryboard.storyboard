@@ -128,12 +128,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="54I-X3-dq1">
+                                <rect key="frame" x="34" y="145" width="108" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ygi-GO-NuF"/>
                     <connections>
                         <outlet property="label" destination="08F-fj-0Su" id="Zb8-iq-L3N"/>
+                        <outlet property="labelPeripheral" destination="54I-X3-dq1" id="l06-5d-8H7"/>
                         <outlet property="labelRSSI" destination="b5V-AP-WeN" id="cCH-Bl-gHH"/>
                         <outlet property="spinner" destination="9xq-kn-Wvv" id="9JQ-2a-gv4"/>
                         <outlet property="textField" destination="YKC-0Q-PO2" id="gEb-bQ-ezl"/>

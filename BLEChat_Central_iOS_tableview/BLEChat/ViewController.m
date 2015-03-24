@@ -100,6 +100,8 @@ NSTimer *rssiTimer;
 //NEW did disconnect function
 -(void) OnBLEDidDisconnect:(NSNotification *)notification
 {
+    
+    
     [rssiTimer invalidate];
 }
 

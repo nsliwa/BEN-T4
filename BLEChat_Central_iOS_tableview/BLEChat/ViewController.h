@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UILabel *labelRSSI;
 @property (weak, nonatomic) BLE *bleShield;
+@property (weak, nonatomic) IBOutlet UILabel *labelPeripheral;
 
 @end
