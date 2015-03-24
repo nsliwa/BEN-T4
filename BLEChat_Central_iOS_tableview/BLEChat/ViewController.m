@@ -13,8 +13,6 @@
 
 @interface ViewController ()
 
-@property (strong, nonatomic, readonly) BLE* bleShield;
-
 @end
 
 @implementation ViewController
@@ -32,6 +30,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     // CHANGE 1.a: change this as you no longer need to instantiate the BLE Object
+
+    self.bleShield = [[BLE alloc] init];
+    [self.bleShield controlSetup];
+    self.bleShield.delegate = self;
+
+
 //    bleShield = [[BLE alloc] init];
 //    [bleShield controlSetup];
 //    bleShield.delegate = self;
@@ -57,7 +61,7 @@
 NSTimer *rssiTimer;
 -(void) readRSSITimer:(NSTimer *)timer
 {
-    [bleShield readRSSI]; // be sure that the RSSI is up to date
+    [self.bleShield readRSSI]; // be sure that the RSSI is up to date
 }
 
 #pragma mark - BLEdelegate protocol methods
@@ -124,11 +128,40 @@ NSTimer *rssiTimer;
     s = [NSString stringWithFormat:@"%@\r\n", s];
     d = [s dataUsingEncoding:NSUTF8StringEncoding];
     
-    [bleShield write:d];
+    [self.bleShield write:d];
 }
 
 
 // CHANGE 1.b: change this as you no longer need to search for perpipherals in this view controller
+
+- (IBAction)BLEShieldScan:(id)sender
+{
+    // disconnect from any peripherals
+    if (self.bleShield.activePeripheral)
+        if(self.bleShield.activePeripheral.isConnected)
+        {
+            [[self.bleShield CM] cancelPeripheralConnection:[self.bleShield activePeripheral]];
+            return;
+        }
+    
+    // set peripheral to nil
+    if (self.bleShield.peripherals)
+        self.bleShield.peripherals = nil;
+    
+    //start search for peripherals with a timeout of 3 seconds
+    // this is an asunchronous call and will return before search is complete
+    [self.bleShield findBLEPeripherals:3];
+    
+    // after three seconds, try to connect to first peripheral
+    [NSTimer scheduledTimerWithTimeInterval:(float)3.0
+                                     target:self
+                                   selector:@selector(connectionTimer:)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+    // give connection feedback to the user
+    [self.spinner startAnimating];
+}
 //- (IBAction)BLEShieldScan:(id)sender
 //{
 //    // disconnect from any peripherals
@@ -157,6 +190,36 @@ NSTimer *rssiTimer;
 //    // give connection feedback to the user
 //    [self.spinner startAnimating];
 //}
+
+//- (IBAction)BLEShieldScan:(id)sender
+//{
+//    // disconnect from any peripherals
+//    if (bleShield.activePeripheral)
+//        if(bleShield.activePeripheral.isConnected)
+//        {
+//            [[bleShield CM] cancelPeripheralConnection:[bleShield activePeripheral]];
+//            return;
+//        }
+//    
+//    // set peripheral to nil
+//    if (bleShield.peripherals)
+//        bleShield.peripherals = nil;
+//    
+//    //start search for peripherals with a timeout of 3 seconds
+//    // this is an asunchronous call and will return before search is complete
+//    [bleShield findBLEPeripherals:3];
+//    
+//    // after three seconds, try to connect to first peripheral
+//    [NSTimer scheduledTimerWithTimeInterval:(float)3.0
+//                                     target:self
+//                                   selector:@selector(connectionTimer:)
+//                                   userInfo:nil
+//                                    repeats:NO];
+//    
+//    // give connection feedback to the user
+//    [self.spinner startAnimating];
+//}
+
 
 // CHANGE 1.c: change this as you no longer need to create the connection in this view controller
 // Called when scan period is over to connect to the first found peripheral
