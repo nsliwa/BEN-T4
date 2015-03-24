@@ -90,7 +90,7 @@ NSTimer *rssiTimer;
 - (void) bleDidDisconnect
 {
     //CHANGE 5.b: remove all instances of the button at top
-    [self.buttonConnect setTitle:@"Connect" forState:UIControlStateNormal];
+    
     
     [rssiTimer invalidate];
 }
@@ -110,7 +110,6 @@ NSTimer *rssiTimer;
 {
     //CHANGE 5.a: Remove all usage of the connect button and remove from storyboard
     [self.spinner stopAnimating];
-    [self.buttonConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
     
     // Schedule to read RSSI every 1 sec.
     rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];

@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UILabel *labelRSSI;
-@property (weak, nonatomic) IBOutlet UIButton *buttonConnect;
 @property (weak, nonatomic) BLE *bleShield;
 
 @end
