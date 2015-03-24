@@ -62,10 +62,13 @@ NSTimer *rssiTimer;
 }
 
 #pragma mark - BLEdelegate protocol methods
--(void) OnBLEDidUpdateRSSI:(NSNumber *)rssi
+-(void) OnBLEDidUpdateRSSI:(NSNotification *)notification
 {
+    NSNumber* d = [[notification userInfo] objectForKey:@"RSSI"];
+//    NSString *s = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.labelRSSI.text = rssi.stringValue;
+        self.labelRSSI.text =  d.stringValue;
     });
      // when RSSI read is complete, display it
 }
