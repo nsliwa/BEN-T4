@@ -86,6 +86,7 @@ NSTimer *rssiTimer;
     self.label.text = s;
 }
 
+/*
 // we disconnected, stop running
 - (void) bleDidDisconnect
 {
@@ -94,7 +95,8 @@ NSTimer *rssiTimer;
     
     [rssiTimer invalidate];
 }
-
+*/
+ 
 //NEW did disconnect function
 -(void) OnBLEDidDisconnect:(NSNotification *)notification
 {
@@ -106,7 +108,18 @@ NSTimer *rssiTimer;
 // you might be interested in the following method:
 // NSString *deviceName =[notification.userInfo objectForKey:@"deviceName"];
 // now just wait to send or receive
--(void) bleDidConnect
+//-(void) bleDidConnect
+//{
+//    //CHANGE 5.a: Remove all usage of the connect button and remove from storyboard
+//    [self.spinner stopAnimating];
+//    [self.buttonConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+//    
+//    // Schedule to read RSSI every 1 sec.
+//    rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
+//}
+
+//NEW did connect function
+-(void) OnBLEDidConnect:(NSNotification *)notification
 {
     //CHANGE 5.a: Remove all usage of the connect button and remove from storyboard
     [self.spinner stopAnimating];
