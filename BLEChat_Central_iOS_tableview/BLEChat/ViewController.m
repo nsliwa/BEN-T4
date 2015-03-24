@@ -24,15 +24,6 @@
     return appDelegate.bleShield;
 }
 
--( CBPeripheral* ) peripheral {
-    if(!_peripheral) {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        _peripheral = [appDelegate.bleShield.peripherals objectAtIndex:0];
-    }
-    
-    return _peripheral;
-};
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,12 +31,7 @@
     
     // CHANGE 1.a: change this as you no longer need to instantiate the BLE Object
 
-    self.bleShield = [[BLE alloc] init];
-    [self.bleShield controlSetup];
-    self.bleShield.delegate = self;
 
-    
-    NSLog(self.peripheral);
 
 //    bleShield = [[BLE alloc] init];
 //    [bleShield controlSetup];
@@ -76,7 +62,7 @@ NSTimer *rssiTimer;
 }
 
 #pragma mark - BLEdelegate protocol methods
--(void) bleDidUpdateRSSI:(NSNumber *)rssi
+-(void) OnBLEDidUpdateRSSI:(NSNumber *)rssi
 {
     self.labelRSSI.text = rssi.stringValue; // when RSSI read is complete, display it
 }

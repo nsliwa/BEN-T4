@@ -104,28 +104,26 @@
     NSLog(@"Attemp to connect to peripherals %ld", (long)indexPath.row);
     CBPeripheral *aPeripheral = [self.bleShield.peripherals objectAtIndex:indexPath.row];
     
+    if (self.bleShield.activePeripheral && self.bleShield.activePeripheral.isConnected) {
+        [[self.bleShield CM] cancelPeripheralConnection:[self.bleShield activePeripheral]];
+    }
+    
     //CHANGE 6: add code her to connect to the selected peripheral (aPeripheral)
-    
-    //Since contentArray is an array of strings, we can use it to build a unique
-    //identifier for each segue.
-    
-    //Perform a segue.
-    [self performSegueWithIdentifier:@"segueConnect"
-                              sender:aPeripheral];
+    [self.bleShield connectPeripheral: aPeripheral];
     
     
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"prepare for segue");
-    
-        UITableViewCell* cell = (UITableViewCell*)sender;
-        ViewController *vc =  [segue destinationViewController];
-        
-        vc.peripheral = sender;
-    
-        //[self.navigationController pushViewController:ivc animated:YES];
-}
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    NSLog(@"prepare for segue");
+//    
+//        UITableViewCell* cell = (UITableViewCell*)sender;
+//        ViewController *vc =  [segue destinationViewController];
+//        
+//        vc.peripheral = sender;
+//    
+//        //[self.navigationController pushViewController:ivc animated:YES];
+//}
 
 /*
 // Override to support conditional editing of the table view.
